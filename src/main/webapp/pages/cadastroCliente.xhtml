@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" template="/template.xhtml">
+
+
+
+	<ui:define name="content"
+		style="margin-right: 30px; margin-left: 10px;">
+		<h:form id="cadastroClienteForm"
+			style="margin-right: 30px; margin-left: 191px; margin-top: 8px">
+			<p:fieldset legend="Cadastro de Cliente">
+
+				<p:fieldset>
+
+					<p:outputLabel value="Nome: " styleClass="form-label"
+						style="float: left; margin-top: 10px" />
+					<h:inputText id="nome" style="margin-top: 10px; margin-left:10px"
+						value="#{cadastroClienteController.cliente.nome}" />
+
+					<br style="clear: both;" />
+
+					<p:outputLabel value="Email: " styleClass="form-label"
+						style="float: left; margin-top: 10px" />
+					<h:inputText id="email" style=" margin-top: 10px; margin-left:13px"
+						value="#{cadastroClienteController.cliente.email}" />
+
+					<br style="clear: both;" />
+
+					<p:outputLabel value="CPF: " styleClass="form-label"
+						style="float: left; margin-top: 10px" />
+					<h:inputText id="cpf" style=" margin-top: 10px; margin-left:24px"
+						value="#{cadastroClienteController.cliente.cpf}" />
+
+					<br style="clear: both;" />
+
+					<p:commandButton style="float: left; margin-top: 10px"
+						title="Salvar" action="#{cadastroClienteController.salvaCliente}"
+						update="listaCliente" />
+
+
+
+				</p:fieldset>
+
+
+			</p:fieldset>
+
+
+			<p:fieldset>
+				<p:dataTable id="listaCliente" var="cliente"
+					value="#{cadastroClienteController.clientes}">
+					<p:column headerText="Id" style="text-align: center">
+						<h:outputText value="#{cliente.id}" />
+					</p:column>
+
+					<p:column headerText="Nome" style="text-align: center">
+						<h:outputText value="#{cliente.nome}" />
+					</p:column>
+
+					<p:column headerText="CPF" style="text-align: center">
+						<h:outputText value="#{cliente.cpf}" />
+					</p:column>
+
+					<p:column headerText="Email" style="text-align: center">
+						<h:outputText value="#{cliente.email}" />
+					</p:column>
+
+					<p:column headerText="Ações" style="width: 30px !important; text-align: center;" exportable="false">
+						<p:commandButton icon ="pi pi-trash" rendered="#{not empty cliente.id}"
+							action="#{cadastroClienteController.excluiCliente(cliente.id)}" title="Excluir" process="@this"
+							update="listaCliente">
+							
+						</p:commandButton>
+					</p:column>
+
+				</p:dataTable>
+			</p:fieldset>
+
+		</h:form>
+	</ui:define>
+
+</ui:composition>

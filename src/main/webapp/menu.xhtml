@@ -1,0 +1,21 @@
+<ui:composition
+	 xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+
+<h:form  id="menuform" style=" float: left; ">  
+    
+    <p:menu>
+        <p:submenu label="Moviamentação">
+            <p:menuitem value="Agendar" outcome="/pages/moviConta" icon="pi pi-angle-right" />
+        </p:submenu>
+        <p:submenu label="Cadastro">
+            <p:menuitem value="Cadastro Conta" outcome="/pages/cadastroConta"  icon="pi pi-angle-right"/>
+            <p:menuitem value="Cadastro Cliente" outcome="/pages/cadastroCliente" icon="pi pi-angle-right"/>
+        </p:submenu>
+    </p:menu>
+ </h:form>
+</ui:composition>

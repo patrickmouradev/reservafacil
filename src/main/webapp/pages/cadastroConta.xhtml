@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" template="/template.xhtml">
+
+	<ui:define name="content"
+		style="margin-right: 30px; margin-left: 10px;">
+		<h:form id="cadastroContaForm"
+			style="margin-right: 30px; margin-left: 191px; margin-top: 8px">
+			<p:fieldset legend="Cadastro de Conta">
+
+				<p:fieldset>
+
+					<p:outputLabel value="Numero: " styleClass="form-label"
+						style="float: left; margin-top: 10px" />
+					<h:inputText id="numero" style="margin-top: 10px; margin-left:10px"
+						value="#{contaBancariaController.contaBancaria.numConta}" />
+
+					<br style="clear: both;" />
+
+					<p:outputLabel value="Agencia: " styleClass="form-label"
+						style="float: left; margin-top: 10px" />
+					<h:inputText id="agencia"
+						style=" margin-top: 10px; margin-left:13px"
+						value="#{contaBancariaController.contaBancaria.agConta}" />
+
+					<br style="clear: both;" />
+
+				
+					<p:commandButton style="float: left; margin-top: 10px"
+						title="Salvar" action="#{contaBancariaController.salvaConta}"
+						update="listaConta" />
+
+
+				</p:fieldset>
+
+
+			</p:fieldset>
+
+
+			<p:fieldset>
+				<p:dataTable id="listaConta" var="conta"
+					value="#{contaBancariaController.listaContaBancaria}">
+					<p:column headerText="Id" style="text-align: center">
+						<h:outputText value="#{conta.id}" />
+					</p:column>
+
+					<p:column headerText="Numero" style="text-align: center">
+						<h:outputText value="#{conta.numConta}" />
+					</p:column>
+
+					<p:column headerText="Agencia" style="text-align: center">
+						<h:outputText value="#{conta.agConta}" />
+					</p:column>
+
+					<p:column headerText="Data Cadastro" style="text-align: center">
+						<h:outputText value="#{conta.dataCadastro}">
+						<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+						</h:outputText>
+					</p:column>
+
+					<p:column headerText="Ações"
+						style="width: 30px !important; text-align: center;"
+						exportable="false">
+						<p:commandButton icon="pi pi-trash" title="Excluir"
+							rendered="#{not empty conta.id}"
+							action="#{contaBancariaController.excluiConta(conta.id)}"
+							process="@this" update="@form">
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+			</p:fieldset>
+
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+
+
